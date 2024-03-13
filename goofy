@@ -1,0 +1,6 @@
+git clone https://github.com/yourusername/yourrepository.git
+cd yourrepository
+# Add your website files to the directory
+git add .
+git commit -m "Initial commit"
+git push origin master
