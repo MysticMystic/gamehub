@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+</head>
+<body>
+    <h1>Welcome to the Game Hub!</h1>
+    
+    <!-- Search bar -->
+    <input type="text" id="searchInput" placeholder="Search games...">
+    
+    <!-- Sort by genre -->
+    <select id="genreSelect">
+        <option value="">Sort by Genre</option>
+        <option value="action">Action</option>
+        <option value="puzzle">Puzzle</option>
+        <option value="adventure">Adventure</option>
+        <option value="strategy">Strategy</option>
+        <option value="sports">Sports</option>
+        <option value="arcade">Arcade</option>
+        <option value="simulation">Simulation</option>
+        <option value="racing">Racing</option>
+        <option value="word">Word</option>
+        <!-- Add more genre options as needed -->
+    </select>
+
+    <p>Here are some websites where you can find games to entertain yourself:</p>
+    <ul id="gameList">
+        <!-- Placeholder for games -->
+        <!-- Each <li> item would represent a game -->
+    </ul>
+
+    <!-- Example of how you can list games -->
+    <script>
+        // Sample games data
+        const games = [
+            // Action
+            { name: "Call of Duty: Mobile", genre: "action", url: "https://www.callofduty.com/mobile" },
+            { name: "Fortnite", genre: "action", url: "https://www.epicgames.com/fortnite/en-US/home" },
+            { name: "Grand Theft Auto V", genre: "action", url: "https://www.rockstargames.com/GTAV" },
+            { name: "Minecraft", genre: "action", url: "https://classic.minecraft.net/" },
+            { name: "Counter-Strike: Global Offensive", genre: "action", url: "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/" },
+            { name: "Dead Cells", genre: "action", url: "https://dead-cells.com/" },
+            { name: "Sonic the Hedgehog", genre: "action", url: "https://store.steampowered.com/app/71163/Sonic_The_Hedgehog/" },
+            { name: "Bubble Trouble", genre: "action", url: "https://www.miniclip.com/games/bubble-trouble/en/" },
+            { name: "QWOP", genre: "action", url: "https://www.foddy.net/2010/10/qwop/" },
+            { name: "Diablo II", genre: "action", url: "https://us.diablo2.blizzard.com/en-us/" },
+            { name: "Pong", genre: "action", url: "https://www.ponggame.org/" },
+            // Puzzle
+            { name: "Tetris", genre: "puzzle", url: "https://tetris.com/play-tetris/" },
+            { name: "Angry Birds", genre: "puzzle", url: "https://chrome.google.com/webstore/detail/angry-birds/aknpkdffaafgjchaibgeefbgmgeghloj" },
+            { name: "Solitaire", genre: "puzzle", url: "https://www.solitaire.org/" },
+            { name: "Bubble Shooter", genre: "puzzle", url: "https://www.bubbleshooter.net/" },
+            { name: "2048", genre: "puzzle", url: "https://play2048.co/" },
+            { name: "Bejeweled", genre: "puzzle", url: "https://www.ea.com/games/bejeweled" },
+            { name: "Bubble Witch Saga", genre: "puzzle", url: "https://king.com/game/bubblewitch" },
+            { name: "Slope", genre: "puzzle", url: "https://slope-game.com/" },
+            { name: "Lemmings", genre: "puzzle", url: "https://www.classicgamesarcade.com/game/21671/lemmings.html" },
+            // Adventure
+            { name: "Mario Kart Tour", genre: "adventure", url: "https://mariokarttour.com/en-US" },
+            { name: "Among Us", genre: "adventure", url: "https://store.steampowered.com/app/945360/Among_Us/" },
+            { name: "Roblox", genre: "adventure", url: "https://www.roblox.com/" },
+            { name: "The Sims FreePlay", genre: "adventure", url: "https://www.ea.com/games/the-sims/the-sims-freeplay" },
+            { name: "Pokémon GO", genre: "adventure", url: "https://pokemongolive.com/en/" },
+            { name: "Terraria", genre: "adventure", url: "https://terraria.org/" },
+            // Strategy
+            { name: "Clash of Clans", genre: "strategy", url: "https://clashofclans.com/" },
+            { name: "Plants vs. Zombies", genre: "strategy", url: "https://www.ea.com/games/plants-vs-zombies" },
+            { name: "League of Legends", genre: "strategy", url: "https://na.leagueoflegends.com/en-us/" },
+            { name: "Chess", genre: "strategy", url: "https://www.chess.com/" },
+            { name: "World of Tanks", genre: "strategy", url: "https://worldoftanks.com/" },
+            // Sports
+            { name: "8 Ball Pool", genre: "sports", url: "https://www.miniclip.com/games/8-ball-pool-multiplayer/en/" },
+            { name: "FIFA Mobile", genre: "sports", url: "https://www.ea.com/games/fifa/fifa-mobile" },
+            // Arcade
+            { name: "Pac-Man", genre: "arcade", url: "https://www.google.com/search?q=pacman&oq=pacman&aqs=chrome.0.0i512j0i20i263i512j0i512j0i20i263i512j0i512j69i60l3.3062j0j7&sourceid=chrome&ie=UTF-8" },
+            { name: "Subway Surfers", genre: "arcade", url: "https://www.kiloo.com/subway-surfers/" },
+            { name: "Slither.io", genre: "arcade", url: "https://slither.io/" },
+            { name: "Fruit Ninja", genre: "arcade", url: "https://www.fruitninja.com/" },
+            { name: "Geometry Dash", genre: "arcade", url: "https://store.steampowered.com/app/322170/Geometry_Dash/" },
+            { name: "Doodle Jump", genre: "arcade", url: "https://store.steampowered.com/app/24800/Doodle_Jump/" },
+            { name: "Frogger", genre: "arcade", url: "https://www.frogger.net/" },
+            { name: "Space Invaders", genre: "arcade", url: "https://www.google.com/search?q=space+invaders&oq=space+invaders&aqs=chrome.0.69i59j0i512j0i512l9.2355j0j7&sourceid=chrome&ie=UTF-8" },
+            { name: "Bubble Trouble", genre: "arcade", url: "https://www.miniclip.com/games/bubble-trouble/en/" },
+            // Racing
+            { name: "Mario Kart Tour", genre: "racing", url: "https://mariokarttour.com/en-US" },
+            { name: "Temple Run", genre: "racing", url: "https://play.google.com/store/apps/details?id=com.imangi.templerun&hl=en_US&gl=US" },
+            // Simulation
+            { name: "The Sims FreePlay", genre: "simulation", url: "https://www.ea.com/games/the-sims/the-sims-freeplay" },
+            { name: "Terraria", genre: "simulation", url: "https://terraria.org/" },
+            // Word
+            { name: "Words with Friends", genre: "word", url: "https://www.wordswithfriends.com/" },
+            // Add more games as needed
+        ];
+
+        // Function to display games
+        function displayGames(gamesToDisplay = games) {
+            const gameList = document.getElementById("gameList");
+            gameList.innerHTML = ""; // Clear previous list
+
+            gamesToDisplay.forEach(game => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = game.url;
+                a.textContent = game.name;
+                li.appendChild(a);
+                gameList.appendChild(li);
+            });
+        }
+
+        // Display initial list of games
+        displayGames();
+
+        // Search functionality
+        document.getElementById("searchInput").addEventListener("input", function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredGames = games.filter(game => game.name.toLowerCase().includes(searchTerm));
+            displayGames(filteredGames);
+        });
+
+        // Genre filter functionality
+        document.getElementById("genreSelect").addEventListener("change", function() {
+            const selectedGenre = this.value.toLowerCase();
+            if (selectedGenre) {
+                const filteredGames = games.filter(game => game.genre.toLowerCase() === selectedGenre);
+                displayGames(filteredGames);
+            } else {
+                displayGames();
+            }
+        });
+    </script>
+</body>
+</html>
